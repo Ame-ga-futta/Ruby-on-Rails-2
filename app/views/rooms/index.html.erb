@@ -1,0 +1,21 @@
+<div class="room-index-wrapper">
+  <% if @count.present?%>
+    <p class="room-index-result">検索結果：<%= @count %>件</p>
+  <% end %>
+
+  <div class="room-index-list">
+    <% @rooms.each do |f| %>
+      <%= link_to "/rooms/#{f.id}", class: "room-index-box" do %>
+        <div class="room-index-box-inner"></div>
+        <div class="room-index-box-contents">
+          <%= image_tag "#{f.image}", class: "room-index-image" %>
+          <ul class="room-index-texts">
+            <li class="room-index-name"><%= f.name %></li>
+            <li class="room-index-address"><%= f.address %></li>
+            <li class="room-index-price"><%= "¥ #{f.price}" %></li>
+          </ul>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

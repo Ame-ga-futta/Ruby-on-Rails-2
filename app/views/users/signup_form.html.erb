@@ -1,0 +1,34 @@
+<div class="sign_up-wrapper">
+  <div class="sign_up-wrapper-box">
+    <p class="sign_up-wrapper-text">新しいアカウントを作成</p>
+
+    <% if @user.errors.full_messages.any? %>
+      <% @user.errors.full_messages.each do |message| %>
+        <p class="error"><%= message %></p>
+      <% end %>
+    <% end %>
+
+    <%= form_with model: @user do |f|%>
+      <ul class="sign_up-wrapper-form">
+        <li>
+          <p class="require-text">必須</p>
+          <%= f.text_field :name, class: "sign_up-field", :placeholder => "ユーザー名" %>
+        </li>
+        <li>
+          <p class="require-text">必須</p>
+          <%= f.email_field :email, class: "sign_up-field", :placeholder => "メールアドレス" %>
+        </li>
+        <li>
+          <p class="require-text">必須</p>
+          <%= f.password_field :password, class: "sign_up-field", :placeholder => "パスワード" %>
+        </li>
+        <li>
+          <p class="require-text">必須</p>
+          <%= f.password_field :password_confirmation, class: "sign_up-field", :placeholder => "パスワード確認" %>
+        </li>
+        <%= f.submit "新しいアカウントを作成",class: "sign_up-submit button" %>
+      </ul>
+    <%end%>
+    <%= link_to "すでにアカウントをお持ちの方はログイン", "/users/log_in" %>
+  </div>
+</div>

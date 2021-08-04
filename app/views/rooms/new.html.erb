@@ -1,0 +1,59 @@
+<div class="room-new-wrapper">
+  <div class="side-menu">
+    <%= link_to "基本情報", "/rooms/new", class: "side-menu-text side-menu-blue" %>
+  </div>
+  <div class="room-new-box">
+    <% if @room.errors.full_messages %>
+      <% @room.errors.full_messages.each do |message| %>
+        <p class="error"><%= message %></p>
+      <% end %>
+    <% end %>
+
+    <%= form_with model: @room do |f|%>
+      <p class="box-title">ルーム情報登録</p>
+
+      <div class="box-line">
+        <div class="box-line-text">
+          <p>ルーム名</p>
+          <p class="require-text">必須</p>
+        </div>
+        <%= f.text_field :name, class: "room-field", :placeholder => "ルーム名を入力" %>
+      </div>
+
+      <div class="box-line">
+        <div class="box-line-text">
+          <p>ルーム紹介</p>
+          <p class="require-text">必須</p>
+        </div>
+        <%= f.text_area :introduction, class: "room-area", :placeholder => "ルーム説明を入力" %>
+      </div>
+
+      <div class="box-line">
+        <div class="box-line-text">
+          <p>料金</p>
+          <p class="require-text">必須</p>
+        </div>
+        <%= f.number_field :price, class: "room-field", :placeholder => "一日あたりの料金を入力" %>
+      </div>
+
+      <div class="box-line">
+        <div class="box-line-text">
+          <p>住所</p>
+          <p class="require-text">必須</p>
+        </div>
+        <%= f.text_field :address, class: "room-field", :placeholder => "住所を入力" %>
+      </div>
+
+      <div class="box-line">
+        <div class="box-line-text">
+          <p>ルーム画像</p>
+          <p class="require-text">必須</p>
+        </div>
+        <%= f.file_field :image, class: "room-field" %>
+      </div>
+
+      <%= f.submit "登録",class: "room-button" %>
+
+    <% end %>
+  </div>
+</div>

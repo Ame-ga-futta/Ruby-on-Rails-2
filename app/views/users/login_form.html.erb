@@ -1,0 +1,24 @@
+<div class="log_in-wrapper">
+  <div class="log_in-wrapper-box">
+    <p class="log_in-wrapper-text">ログイン</p>
+
+    <% if @error_message %>
+      <p class="error"><%= @error_message %></p>
+    <% end %>
+
+    <%= form_with url: "/users/log_in" do |f|%>
+      <ul class="log_in-wrapper-form">
+        <li>
+          <p class="require-text">必須</p>
+          <%= f.email_field :email, value: @input, class: "log_in-field", :placeholder => "メールアドレス" %>
+        </li>
+        <li>
+          <p class="require-text">必須</p>
+          <%= f.password_field :password, class: "log_in-field", :placeholder => "パスワード" %>
+        </li>
+        <%= f.submit "ログイン",class: "log_in-submit button" %>
+      </ul>
+    <%end%>
+    <%= link_to "新しいアカウントを作成", "/users/sign_up" %>
+  </div>
+</div>

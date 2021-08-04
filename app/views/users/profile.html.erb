@@ -1,0 +1,44 @@
+<div class="profile-wrapper">
+  <div class="side-menu">
+    <%= link_to "アカウント", "/users/account", class: "side-menu-text" %>
+    <%= link_to "プロフィール", "/users/profile", class: "side-menu-text side-menu-blue" %>
+  </div>
+  <div class="profile-box">
+    <% if @user.errors.full_messages %>
+      <% @user.errors.full_messages.each do |message| %>
+        <p class="error"><%= message %></p>
+      <% end %>
+    <% end %>
+
+    <%= form_with model: @user, url: {controller: 'users', action: 'update_profile' } do |f| %>
+      <p class="box-title">プロフィール</p>
+
+      <%= image_tag "#{@current_user.icon}", class: "profile-image" %>
+
+      <div class="box-line">
+        <div class="box-line-text">
+          <p>アイコン画像</p>
+          <p class="require-text">必須</p>
+        </div>
+        <%= f.file_field :icon, class: "profile-field" %>
+      </div>
+
+      <div class="box-line">
+        <div class="box-line-text">
+          <p>名前</p>
+          <p class="require-text">必須</p>
+        </div>
+        <%= f.text_field :name, class: "profile-field" %>
+      </div>
+
+      <div class="box-line">
+        <div class="box-line-text">
+          <p>自己紹介</p>
+        </div>
+        <%= f.text_area :introduction, class: "profile-area" %>
+      </div>
+
+      <%= f.submit "更新",class: "account-button" %>
+    <% end %>
+  </div>
+</div>

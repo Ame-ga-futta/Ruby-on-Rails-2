@@ -1,0 +1,19 @@
+<div class="account-wrapper">
+  <div class="side-menu">
+    <%= link_to "アカウント", "/users/account", class: "side-menu-text side-menu-blue" %>
+    <%= link_to "プロフィール", "/users/profile", class: "side-menu-text" %>
+  </div>
+  <div class="account-box">
+    <p class="box-title">アカウント</p>
+    <div class="box-line">
+      <p>メールアドレス</p>
+      <p><%= @current_user.email %></p>
+    </div>
+    <div class="box-line">
+      <p>パスワード</p>
+      <p>********</p>
+    </div>
+    <%= link_to "編集" ,"/users/#{@current_user.id}/edit", class: "account-button" %>
+    <%= link_to "退会", "/users/#{@current_user.id}", class: "delete-button", method: :delete, data:{confirm: "本当に退会しますか？"} %>
+  </div>
+</div>

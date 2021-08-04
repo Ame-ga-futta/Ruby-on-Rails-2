@@ -1,0 +1,39 @@
+<div class="edit-wrapper">
+  <div class="edit-box">
+    <p class="edit-box-title">アカウント編集</p>
+
+    <% if @error_message %>
+      <p class="error"><%= @error_message %></p>
+    <% end %>
+    <% if @user.errors.full_messages.any? %>
+      <% @user.errors.full_messages.each do |message| %>
+        <p class="error"><%= message %></p>
+      <% end %>
+    <% end %>
+
+    <%= form_with model: @user, url: {controller: 'users', action: 'update_account' } do |f| %>
+      <div class="edit-box-form">
+        <ul>
+          <li>
+            <p>メールアドレス</p>
+            <%= f.text_field :email, class: "profile-edit-field" %>
+          </li>
+          <li>
+            <p>現在のパスワード</p>
+            <%= f.password_field :password, class: "profile-edit-field", placeholder: "現在のパスワードを入力", value: '' %>
+          </li>
+          <li>
+            <p>変更後パスワード（変更する場合のみ入力）</p>
+            <%= f.password_field :password_reset, class: "profile-edit-field", value: '' %>
+          </li>
+          <li>
+            <p>パスワード確認用（変更する場合のみ入力）</p>
+            <%= f.password_field :password_reset_confirmation, class: "profile-edit-field", value: '' %>
+          </li>
+        </ul>
+        <%= f.submit "更新",class: "edit-submit button" %>
+        <%= link_to "戻る" ,"/users/account", class: "edit-button button" %>
+      </div>
+    <% end %>
+  </div>
+</div>

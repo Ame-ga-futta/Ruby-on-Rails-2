@@ -1,16 +1,75 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ReserveApp</title>
+    <title>HotelReserve</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
   </head>
 
   <body>
+    <header>
+      <div class="header">
+        <div class="header-left">
+          <%= link_to "HotelReserve", "/", class: "header-logo" %>
+          <div class="header-search">
+            <i class="fa fa-map-marker icon" aria-hidden="true"></i>
+            <%= form_with url: search_area_path, method: :get do |f|%>
+              <%= f.text_field "search", class: "header-search-field", :placeholder => "エリア" %>
+            <%end%>
+          </div>
+          <div class="header-search">
+            <i class="fa fa-search icon" aria-hidden="true"></i>
+            <%= form_with url: search_keyword_path, method: :get do |f|%>
+              <%= f.text_field "search", class: "header-search-field", :placeholder => "キーワード" %>
+            <%end%>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <% if @current_user %>
+            <div class="header-profile">
+              <p class="header-profile-name"><%= @current_user.name %></p>
+              <%= image_tag "#{@current_user.icon}" , class: "header-profile-image" %>
+            </div>
+          <% else %>
+            <%= link_to "ログイン", "/users/log_in", class: "header-login button" %>
+            <%= link_to "登録する", "/users/sign_up", class: "header-signup button" %>
+          <% end %>
+        </div>
+      </div>
+    </header>
+
+    <div class="header-background">
+    </div>
+
+    <div class="header-menu display-none">
+      <ul>
+        <li class="header-menu-text"><%= link_to "ルーム登録", :new_room %></li>
+        <li class="header-menu-text"><%= link_to "予約済みルーム一覧", "/reservations"%></li>
+        <li class="header-menu-text"><%= link_to "登録済みルーム一覧", "/rooms/posts"%></li>
+        <li class="header-menu-text"><%= link_to "設定", "/users/account"%></li>
+        <li class="header-menu-text"><%= link_to "ログアウト", "/users/log_out", method: :post %></li>
+      </ul>
+    </div>
+
+    <% if flash.notice %>
+      <p class="flash"><%= flash[:notice] %></p>
+    <% end %>
+
     <%= yield %>
+
+    <footer>
+      <div class="footer">
+        <p>© 2020 POTEPAN.INC.</p>
+      </div>
+    </footer>
   </body>
 </html>

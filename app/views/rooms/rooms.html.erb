@@ -1,0 +1,30 @@
+<div class="room-posts-wrapper">
+  <p class="room-posts-title">登録済みルーム一覧</p>
+  <div class="room-posts-contents">
+    <p class="room-posts-image">ルーム画像</p>
+    <p class="room-posts-name">ルーム名</p>
+    <p class="room-posts-introduction">ルーム紹介</p>
+    <p class="room-posts-price">料金</p>
+    <p class="room-posts-create-date">作成日</p>
+    <div class="room-posts-links">
+      <p class="room-posts-create-edit"></p>
+      <p class="room-posts-create-delete"></p>
+    </div>
+  </div>
+
+  <% @rooms.each do |f| %>
+    <div class="room-posts-contents">
+      <div class="room-posts-image">
+        <%= image_tag "#{f.image}", class: "room-posts-image-image" %>
+      </div>
+      <p class="room-posts-name"><%= f.name %></p>
+      <p class="room-posts-introduction"><%= f.introduction %></p>
+      <p class="room-posts-price"><%= f.price %></p>
+      <p class="room-posts-create-date"><%= f.created_at.to_s(:datetime_jp) %></p>
+      <div class="room-posts-links">
+        <%= link_to "編集", "/rooms/#{f.id}/edit", class: "room-posts-create-edit" %>
+        <%= link_to "削除", "/rooms/#{f.id}", method: :delete, data:{confirm: "本当に削除しますか？"}, class: "room-posts-create-delete" %>
+      </div>
+    </div>
+  <% end %>
+</div>

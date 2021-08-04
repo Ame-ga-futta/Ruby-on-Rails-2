@@ -1,0 +1,43 @@
+<div class="top-wrapper">
+  <div class="top-wrapper-content">
+    <h1>HotelReserveで泊まったり<br>泊まられたりしよう</h1>
+    <p>エリア</p>
+    <%= form_with url: search_area_path, method: :get do |f|%>
+      <%= f.text_field "search",class: "top-wrapper-form top-wrapper-form-field", :placeholder => "東京" %>
+      <%= f.submit "探す",class: "top-wrapper-form top-wrapper-form-submit" %>
+    <% end %>
+  </div>
+</div>
+
+<div class="recommended-wrapper">
+  <h1>おすすめのエリア</h1>
+  <div class="recommended-wrapper-boxes">
+    <%= link_to search_keyword_path(search: "東京"), class: "links" do %>
+      <div class="recommended-wrapper-box">
+        <%= image_tag "tokyo.jpg", class: "recommended-wrapper-image" %>
+        <p class="recommended-wrapper-text">東京</p>
+      </div>
+    <% end %>
+
+    <%= link_to search_keyword_path(search: "大阪"), class: "links" do %>
+      <div class="recommended-wrapper-box">
+        <%= image_tag "osaka.jpg", class: "recommended-wrapper-image" %>
+        <p class="recommended-wrapper-text">大阪</p>
+      </div>
+    <% end %>
+
+    <%= link_to search_keyword_path(search: "金沢"), class: "links" do %>
+      <div class="recommended-wrapper-box">
+        <%= image_tag "kanazawa.jpg", class: "recommended-wrapper-image" %>
+        <p class="recommended-wrapper-text">金沢</p>
+      </div>
+    <% end %>
+
+    <%= link_to search_keyword_path(search: "沖縄"), class: "links" do %>
+      <div class="recommended-wrapper-box">
+        <%= image_tag "okinawa.jpg", class: "recommended-wrapper-image" %>
+        <p class="recommended-wrapper-text">沖縄</p>
+      </div>
+    <% end %>
+  </div>
+</div>

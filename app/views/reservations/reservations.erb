@@ -1,0 +1,27 @@
+<div class="reservations-wrapper">
+  <p class="reservations-title">予約済みルーム一覧</p>
+  <div class="reservations-contents">
+    <p class="reservations-image">ルーム画像</p>
+    <p class="reservations-room-name">ルーム名</p>
+    <p class="reservations-room-introduction">ルーム紹介</p>
+    <p class="reservations-room-total-price">合計料金</p>
+    <p class="reservations-start-date">開始日</p>
+    <p class="reservations-end-date">終了日	</p>
+    <p class="reservations-update-date">予約確定日時</p>
+  </div>
+  <% @reservations.each do |f| %>
+    <%= link_to "/rooms/#{f.room_id}" do %>
+      <div class="reservations-contents">
+        <div class="reservations-image">
+          <%= image_tag "#{f.room_image}", class: "reservations-image-image" %>
+        </div>
+        <p class="reservations-room-name"><%= f.room_name %></p>
+        <p class="reservations-room-introduction"><%= f.room_introduction %></p>
+        <p class="reservations-room-total-price"><%= f.room_total_price %></p>
+        <p class="reservations-start-date"><%= f.start_date %></p>
+        <p class="reservations-end-date"><%= f.end_date %></p>
+        <p class="reservations-update-date"><%= f.updated_at.to_s(:datetime_jp) %></p>
+      </div>
+      <% end %>
+  <% end %>
+</div>
